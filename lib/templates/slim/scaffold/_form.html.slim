@@ -1,0 +1,13 @@
+= simple_form_for @<%= singular_table_name %>, html: { class: 'form-horizontal' } do |f|
+  <%- attributes.each do |attribute| -%>
+  = f.<%= attribute.reference? ? :association : :input %> :<%= attribute.name %>
+  <%- end -%>
+  .form-action.form-group
+    .form-left-offset.form-right
+      = button_tag(type: 'submit', class: 'btn btn-primary', data: { disable_with: t('helpers.disable_with') })
+        = icon('check-square-o', t("helpers.submit.#{action_name}", model: f.object.class.model_name.human))
+      = ' or '
+      = link_to t('.cancel', default: t('helpers.links.cancel')), <%= table_name %>_path
+      - if f.object.persisted?
+        .pull-right
+          = link_to icon('trash', t('.destroy', default: t('helpers.links.destroy'))), f.object, method: :delete, data: { confirm: "Are you sure?", disable_with: t('helpers.disable_with') }, class: 'btn btn-danger'

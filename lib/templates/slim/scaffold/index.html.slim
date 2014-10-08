@@ -1,0 +1,14 @@
+.page-header
+  .pull-right
+    = link_to icon('file-o', t('helpers.links.new', model: <%= class_name %>.model_name.human)), new_<%= singular_table_name %>_path, class: 'btn btn-primary'
+  h1= page_title(model: <%= class_name %>.model_name.human.pluralize)
+
+table.table.table-hover
+  thead
+    tr
+      th
+  tbody
+    - @<%= plural_table_name %>.each do |<%= singular_table_name %>|
+      tr
+
+= paginate(@<%= plural_table_name %>)
