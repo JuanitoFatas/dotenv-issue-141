@@ -40,4 +40,10 @@ module Dotenv
 end
 ```
 
+My workaround is to load it by myself:
+
+```
+Dotenv.load if Rails.env.development? || Rails.env.test?
+```
+
 Thank you in advance.
